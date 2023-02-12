@@ -52,17 +52,34 @@ export default function Navbar() {
                   className=" float-left my-auto mr-4 h-9 w-9 overflow-hidden rounded-sm bg-white bg-cover bg-no-repeat" //avatar
                 />
               )} */}
-               <Link href={`/dashboard`} className="flex text-center justify-center my-auto mr-2">
+               <Link href={`/dashboard`} className="flex text-center justify-center my-auto mr-4">
                   Dashboard
                 </Link>
-              <span className="">
+                <div className="flex my-auto ">
+                <th className=" shadow-inner my-auto ">
+          {session?.user && (
+            <>
+              {session.user.image && (
+                <span
+                  style={{ backgroundImage: `url('${session.user.image}')` }}
+                  className=" float-left my-auto  mr-2 h-7 w-7 justify-center text-center overflow-hidden rounded-sm bg-white bg-cover bg-no-repeat" //avatar
+                />
+              )}
+               <p className="flex justify-center text-green-600 my-auto">
+                 {session.user.name ?? session.user.email}
+               </p>
+               </>
+          )}
+       </th>
+      </div> 
+              {/* <span className=""> */}
                
                 <br />
                 {/* <p className="">
                   {session.user.name ?? session.user.email}
                 </p> */}
                
-              </span>
+              {/* </span> */}
               <a
                 href={`/api/auth/signout`}
                 className="  my-auto mr-2 ml-2   rounded-md bg-green-900 px-2 py-1 text-white hover:bg-gray-400 " //button
