@@ -59,8 +59,7 @@ model Job {
   JobName      String
   CompanyName  String
   email        String
-  mobileNumber Int
-  devYes       String
-  devNO        String
+  mobileNumber String
+  
   JobTitle     String
 }
