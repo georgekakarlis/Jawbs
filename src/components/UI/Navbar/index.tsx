@@ -55,7 +55,7 @@ export default function Navbar() {
                <Link href={`/dashboard`} className="flex text-center justify-center my-auto mr-4">
                   Dashboard
                 </Link>
-                <div className="flex my-auto ">
+                <div className="inline-flex my-auto ">
                 <th className=" shadow-inner my-auto ">
           {session?.user && (
             <>
