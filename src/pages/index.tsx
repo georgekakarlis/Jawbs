@@ -1,5 +1,9 @@
 
+import JobsCard from "@/components/UI/JobsCard"
 import Layout from "../components/Layout"
+
+
+
 
 
 export default function Home() {
@@ -7,7 +11,7 @@ export default function Home() {
     <>
      
       <Layout>
-      <h1>hey</h1>
+      <JobsCard />
       </Layout>
     </>
   )
