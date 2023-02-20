@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   const { data: session, status } = useSession();
   
-  const loading = status === "loading";
+  /* const loading = status === "loading"; */
 
   return (
     <>
