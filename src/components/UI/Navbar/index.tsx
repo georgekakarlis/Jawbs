@@ -14,6 +14,9 @@ export default function Navbar() {
             <li className="text-xl sm:my-auto md:my-auto my-auto">
               <Link href="/" className="text-center  justify-center my-auto">Jawbs</Link>
             </li>
+            <li className="text-xl sm:my-auto md:my-auto my-auto">
+              <Link href="/jobs" className="text-center  justify-center mx-auto ml-4 my-auto">Jobs</Link>
+            </li>
 
             {/* <li className="">
               {session?.user && (
@@ -55,8 +58,10 @@ export default function Navbar() {
                <Link href={`/dashboard`} className="flex text-center justify-center my-auto mr-4">
                   Dashboard
                 </Link>
-                <div className="inline-flex my-auto ">
-                <th className=" shadow-inner my-auto ">
+                
+                <table className=" inline-flex my-auto">
+  <tbody>
+                <tr className=" shadow-inner my-auto ">
           {session?.user && (
             <>
               {session.user.image && (
@@ -70,8 +75,10 @@ export default function Navbar() {
                </p>
                </>
           )}
-       </th>
-      </div> 
+       </tr>
+       </tbody>
+       </table>
+       
               {/* <span className=""> */}
                
                 <br />

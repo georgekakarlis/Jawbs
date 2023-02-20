@@ -1,5 +1,8 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const validateEmail = (value: string) => {
@@ -19,6 +22,7 @@ type FormValues = {
 
 export default function JobForm() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const router = useRouter();
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -30,8 +34,14 @@ export default function JobForm() {
       });
       const result = response.data;
       console.log(result);
+      toast.success('Job posted successfully!');
+        // redirect to dashboard after 2 seconds
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 2000);
     } catch (error) {
       console.error(error);
+      toast.error('Error posting job. Please try again.');
     }
   };
 
@@ -66,6 +76,18 @@ export default function JobForm() {
       {errors.JobTitle && <span>This field is required</span>}
 
       <button type="submit">Submit</button>
+      <ToastContainer 
+      position="top-right"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+/>
     </form>
   );
 }

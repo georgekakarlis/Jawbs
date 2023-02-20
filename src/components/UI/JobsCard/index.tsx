@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 
 interface Job {
   id: number;
@@ -14,18 +14,24 @@ export default function JobsList() {
   const [jobs, setJobs] = useState<Job[]>([]);
 
   useEffect(() => {
-    axios.get("/api/getJobs").then((response) => setJobs(response.data));
+    async function fetchJobs() {
+      const response = await fetch("/api/getJobs");
+      const jobs = await response.json();
+      setJobs(jobs);
+    }
+
+    fetchJobs();
   }, []);
 
   return (
-    <div className="mx-auto justify-center p-2 flex flex-wrap w-full">
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto justify-center flex  w-full">
+    <div className="grid gap-2 grid-rows-1 sm:grid-rows-1 lg:grid-rows-1 w-1/2 p-5 container mx-auto">
       {jobs.map((job) => (
         <div
           key={job.id}
           className="bg-white rounded-lg shadow-lg overflow-hidden"
         >
-          <div className="px-3 py-2 bg-blue-500 text-white font-bold uppercase tracking-wide text-xs">
+          <div className="px-3 py-2 bg-green-500 text-white font-bold uppercase tracking-wide text-xs">
             {job.JobTitle}
           </div>
           <div className="py-4 px-6">
@@ -37,27 +43,16 @@ export default function JobsList() {
           <div className="px-6 pb-3">
             <a
               href={`mailto:${job.email}`}
-              className="text-blue-600 hover:text-blue-500"
+              className="text-green-600 hover:text-blue-500"
             >
               {job.email}
             </a>
-            <div className="mt-2 flex items-center">
-              <svg
-                className="h-5 w-5 text-gray-400"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
-                />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
+            <div className="mt-2 flex justify-between items-center">
+              
               <p className="ml-2 text-gray-600">{job.mobileNumber}</p>
+              <button className="  rounded-xl bg-red-500">Apply</button>
             </div>
+            
           </div>
         </div>
       ))}

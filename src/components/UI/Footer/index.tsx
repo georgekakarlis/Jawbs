@@ -15,7 +15,7 @@ export default function Footer() {
               className="text-wickedblue mx-2 hover:text-gray-500"
               rel="noopener noreferrer"
             >
-              @nuzi
+              @Jawbs
             </Link>
           </span>
         </div>

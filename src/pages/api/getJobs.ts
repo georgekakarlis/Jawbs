@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
-export default async function handler(
+export default async function getJobs(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
