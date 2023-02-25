@@ -1,7 +1,6 @@
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
-   
 }
 
 generator client {
@@ -15,12 +14,12 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
+  refresh_token      String?  
+  access_token       String? 
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.Text
+  id_token           String?  
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -44,6 +43,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+   
 }
 
 model VerificationToken {
@@ -55,11 +55,27 @@ model VerificationToken {
 }
 
 model Job {
-  id           String @unique @default(cuid())
-  JobName      String
-  CompanyName  String
-  email        String
-  mobileNumber String
+  id           String      @id @default(cuid())
+  title        String
+  description  String
+  category     JobCategory
+  location     String
+  salary       String
+  postedAt     DateTime   @default(now())
+  expiresAt    DateTime?
   
-  JobTitle     String
+  userId       String?
+  email        String?
+  link         String?
+  company      String
+}
+
+enum JobCategory {
+  IT
+  Sales
+  Marketing
+  Finance
+  Design
+  Gastronomy
+  Other
 }

@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, type Prisma } from '@prisma/client';
+import { JobCategory, Prisma, PrismaClient } from '@prisma/client';
+import { getServerSession, User } from 'next-auth';
+import { authOptions } from './auth/[...nextauth]';
 
 export const config = {
   api: {
@@ -19,27 +21,69 @@ export const config = {
   },
 };
 
+export interface Job {
+  id: string;
+  title: string;
+  description: string;
+  category: JobCategory;
+  location: string;
+  salary: string;
+  email: string;
+  link: string;
+}
+
 const prisma = new PrismaClient();
 
-
-export default async function handler(
+export default async function postJob(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === 'POST') {
-    const { JobName, CompanyName, email, mobileNumber,  JobTitle }: Prisma.JobCreateInput = req.body;
+  const session = await getServerSession(req, res, authOptions)
+  
+
+  if (!session || !session.user) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  if (req.method != 'POST') {
+    
+    return res.status(405).end();
+    
+  }
+
+ 
+
+  try {
+    const {
+      title,
+      description,
+      category,
+      location,
+      salary,
+      email,
+      link,
+      company,
+      
+    }: Prisma.JobCreateInput = req.body;
+
+
     const job = await prisma.job.create({
       data: {
-        JobName: JobName,
-        CompanyName: CompanyName,
-        email: email,
-        mobileNumber: mobileNumber.toString(),
+        title,
+        description,
+        category,
+        location,
+        salary,
+        email,
+        link,
+        company,
         
-        JobTitle: JobTitle,
-      },
+      }
     });
+
     res.status(200).json(job);
-  } else {
-    res.status(405).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to create job' });
   }
 }

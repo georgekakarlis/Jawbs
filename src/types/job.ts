@@ -1,8 +1,15 @@
+import { JobCategory } from "@prisma/client";
+
 export interface Job {
-    id: number;
-    JobName: string;
-    CompanyName: string;
-    email: string;
-    mobileNumber: string;
-    JobTitle: string;
+    id: String;
+    title: String;
+    description: String;
+    category: JobCategory;
+    location: String;
+    salary: String;
+    email: String;
+    link: String;
   }
+
+export { JobCategory };
+

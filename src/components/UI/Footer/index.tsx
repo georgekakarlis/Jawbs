@@ -11,7 +11,7 @@ export default function Footer() {
           <span className="mx-auto text-sm font-light text-gray-500">
             Copyright © 2023
             <Link
-              href="https://wickedlabs.dev"
+              href=""
               className="text-wickedblue mx-2 hover:text-gray-500"
               rel="noopener noreferrer"
             >

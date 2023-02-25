@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { JobCategory } from '@prisma/client';
+import { useRef } from 'react';
+import { useSession } from 'next-auth/react';
+
 
 
 const validateEmail = (value: string) => {
@@ -11,24 +15,33 @@ const validateEmail = (value: string) => {
 };
 
 type FormValues = {
-  JobName: string;
-  CompanyName: string;
+  id: string;
+  title: string;
+  description: string;
+  category: JobCategory;
+  location: string;
+  salary: string;
   email: string;
-  mobileNumber: number;
-  /* devYes: string;
-  devNo: string;  */
-  JobTitle: string;
+  link: string;
+  company: string;
 };
 
+
 export default function JobForm() {
+  
+
+  const categoryRef = useRef<HTMLSelectElement>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const router = useRouter();
+  
 
   const onSubmit = async (data: FormValues) => {
     try {
       const response = await axios.post('http://localhost:3000/api/postJob', {
         ...data,
-      mobileNumber: data.mobileNumber.toString(), 
+        salary: toString(),
+        category: categoryRef.current?.value as JobCategory, // get selected value from ref
+        
     }, {
         headers: { 'Content-Type': 'application/json' },
       });
@@ -36,8 +49,8 @@ export default function JobForm() {
       console.log(result);
       toast.success('Job posted successfully!');
         // redirect to dashboard after 2 seconds
-        setTimeout(() => {
-          router.push('/dashboard');
+        setTimeout(async () => {
+         await router.push('/dashboard');
         }, 2000);
     } catch (error) {
       console.error(error);
@@ -47,34 +60,44 @@ export default function JobForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="job-name">Job Name</label>
-      <input type="text"  {...register("JobName" as const, { required: "Job name is required", minLength: 3 })} />
-      {errors.JobName && <span>This field is required</span>}
+      <label htmlFor="job-name">Title</label>
+      <input type="text"  {...register("title" as const, { required: "Job Title is required", minLength: 3 })} />
+      {errors.title && <span>Title is required</span>}
 
-      <label htmlFor="company-name">Company Name</label>
-      <input type="text" {...register("CompanyName" as const, { required: "Company name is required" })} />
-      {errors.CompanyName && <span>This field is required</span>}
+      <label htmlFor="company-name">Description</label>
+      <input type="text" {...register("description" as const, { required: "Company name is required" })} />
+      {errors.description && <span>This field is required</span>}
 
       <label htmlFor="email">Email</label>
       <input type="email" {...register("email" as const, { required: "email is required", validate: validateEmail })} />
       {errors.email && <span>This field is required</span>}
 
-      <label htmlFor="mobile-number">Mobile Number</label>
-      <input type="number" {...register("mobileNumber" as const, { required: "Tel number is required" })} />
-      {errors.mobileNumber && <span>This field is required</span>}
+      <label htmlFor="link">Link</label>
+      <input type="text" {...register("link" as const, { required: "link is required" })} />
+      {errors.link && <span>This field is required</span>}
 
-      {/* <label htmlFor="dev-yes">Development Experience (Yes)</label>
-      <input type="radio" value="Yes" {...register("devYes" as const)} />
-      {errors.devYes && <span>This field is required</span>}
+      <label htmlFor="salary">Salary</label>
+      <input type="number" {...register("salary" as const, { required: "Salary is required" })} />
+      {errors.salary && <span>Salary is required</span>}
 
-      <label htmlFor="dev-no">Development Experience (No)</label>
-      <input type="radio" value="No" {...register("devNo" as const)} />
-      {errors.devNo && <span>This field is required</span>} */}
+      <div>
+        <label htmlFor="category">Category:</label>
+        <select name="category" id="category" ref={categoryRef}>
+          {Object.values(JobCategory).map(category => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+      </div>
+       
+    <label htmlFor="company">Company</label>
+      <input type="text" {...register("company" as const, { required: "company is required" })} />
+      {errors.company && <span>Company is required</span>}
 
-      <label htmlFor="job-title">Job Title</label>
-      <input type="text" {...register("JobTitle" as const, { required: "JobTitle is required" })} />
-      {errors.JobTitle && <span>This field is required</span>}
+      <label htmlFor="location">Location</label>
+      <input type="text" {...register("location" as const, { required: "location is required" })} />
+      {errors.location && <span>Location is required</span>}
 
+      
       <button type="submit">Submit</button>
       <ToastContainer 
       position="top-right"

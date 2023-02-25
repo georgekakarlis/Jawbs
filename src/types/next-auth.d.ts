@@ -9,4 +9,7 @@ declare module "next-auth" {
       id: string;
     } & DefaultSession["user"];
   }
+  interface NextApiRequest {
+    session: Session | null | undefined;
+  }
 }
