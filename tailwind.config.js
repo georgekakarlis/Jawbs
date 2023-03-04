@@ -12,8 +12,10 @@ module.exports = {
     colors: {
       black: '#14110F',
       gray: '#888688',
+      lightgray: "#888682",
       red: '#DB0047',
-      white: '#ECFFF8'
+      white: '#ECFFF8',
+     indigo: "#3730a3"
     },    
     extend: {},
   },
