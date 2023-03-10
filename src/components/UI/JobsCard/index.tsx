@@ -1,5 +1,4 @@
 import { JobCategory } from "@prisma/client";
-import { User } from "next-auth";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

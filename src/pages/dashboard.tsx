@@ -25,7 +25,7 @@ export default function Dashboard() {
        
       
       <button><Link href="/create-job">Create a job</Link></button>
-      <p></p>
+      
     </Layout>
   );
 }
