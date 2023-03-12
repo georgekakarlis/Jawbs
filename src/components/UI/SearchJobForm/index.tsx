@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { JobCategory } from '@prisma/client';
 import { useRef } from 'react';
+import Image from 'next/image';
+import MainPageSVG from '../SVGIcons/MainPageSVG';
 
 type FormValues = {
     id: string;
@@ -46,7 +48,10 @@ export default function SearchJobForm ()  {
       };
 
   return (
-    <section className="h-screen w-full p-4 flex flex-col md:flex-row justify-center items-center ">
+    <section className="h-screen w-full p-4 flex z-10 flex-col md:flex-row justify-center items-center ">
+      <div className='h-screen block  my-auto mx-auto  w-screen'>
+      <MainPageSVG />
+      </div>
         <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4 rounded-md'>
         <h3 className="text-white md:mr-2 mb-2 md:mb-0 justify-center text-center text-xl">Search Jobs</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row justify-center items-center">
@@ -94,6 +99,7 @@ export default function SearchJobForm ()  {
         <button type="submit" className="bg-indigo-500 text-white p-2 rounded-md flex-1">Search Jobs</button>
       </form>
       </div>
+     
     </section>
   )
 }

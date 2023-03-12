@@ -20,7 +20,7 @@ export default function JobsList() {
 
   useEffect(() => {
     async function fetchJobs() {
-      const response = await fetch("/api/jobs/getJobs");
+      const response = await fetch("/api/getJobs");
       const jobs = await response.json();
       setJobs(jobs);
     }

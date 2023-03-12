@@ -7,7 +7,9 @@ type Props = {}
 const jobsPage = (props: Props) => {
   return (
     <Layout>
+      <div className='h-screen'>
       <JobsCard />
+      </div>
       </Layout>
   )
 }

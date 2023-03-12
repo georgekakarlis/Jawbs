@@ -1,8 +1,13 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
+
+
+
+
 export default function Navbar() {
   const { data: session, status } = useSession();
+ 
   
   /* const loading = status === "loading"; */
 
@@ -15,8 +20,10 @@ export default function Navbar() {
               <Link href="/" className="text-center  justify-center my-auto text-gray hover:text-white">Jawbs</Link>
             </li>
             <li className="text-xl sm:my-auto md:my-auto my-auto">
-              <Link href="/jobs" className="text-center  justify-center mx-auto ml-4 my-auto text-gray hover:text-white focus:outline-none">Jobs</Link>
-            </li>
+    <Link href="/jobs" className="text-center  justify-center mx-auto ml-4 my-auto text-gray hover:text-white focus:outline-none">Jobs</Link>
+     
+
+     </li>
 
             {/* <li className="">
               {session?.user && (
@@ -37,7 +44,7 @@ export default function Navbar() {
             <>
               <a
                 href={`/auth/signin`}
-                className=" mr-5 ml-2 w-full  rounded-md text-gray px-3 py-2  hover:bg-gray-400"
+                className=" mr-5 ml-2 w-full  rounded-md text-gray px-3 py-2  hover:bg-green-800"
                 onClick={(e) => {
                   e.preventDefault();
                   void signIn();
@@ -89,7 +96,7 @@ export default function Navbar() {
               {/* </span> */}
               <a
                 href={`/api/auth/signout`}
-                className="  my-auto mr-2 ml-2   rounded-md bg-green-900 px-2 py-1 text-red hover:bg-gray-400 " //button
+                className="  my-auto mr-2 ml-2   rounded-md bg-green-600 px-2 py-1 text-white hover:bg-green-900 " //button
                 onClick={(e) => {
                   e.preventDefault();
                  void signOut();

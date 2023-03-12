@@ -176,7 +176,7 @@ export default function Footer() {
               <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                 <button
                   type="submit"
-                  className="w-full bg-indigo border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-gray hover:text-white hover:bg-indigo focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray focus:ring-indigo"
+                  className="w-full bg-indigo-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-gray hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray focus:ring-indigo-900"
                 >
                   Subscribe
                 </button>

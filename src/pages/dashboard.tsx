@@ -19,13 +19,14 @@ export default function Dashboard() {
   // If session exists, display content
   return (
     <Layout>
+      <div className="h-screen mx-auto  p-4">
       <h1 className="text-center pt-1">Dashboard</h1>
       
       
        
       
       <button><Link href="/create-job">Create a job</Link></button>
-      
+      </div>
     </Layout>
   );
 }
