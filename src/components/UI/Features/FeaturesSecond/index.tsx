@@ -29,7 +29,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="bg-black py-24 sm:py-32 border-4">
+    <section className="bg-gray-900 py-24 sm:py-32 border-4">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-500">Find a Job Faster</h2>

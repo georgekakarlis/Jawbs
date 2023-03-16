@@ -93,7 +93,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-black mt-auto my-auto w-full" aria-labelledby="footer-heading">
+    <footer className="bg-gray-900 mt-auto my-auto w-full" aria-labelledby="footer-heading">
       <h2 id="" className="sr-only ">
         Nuzi
       </h2>

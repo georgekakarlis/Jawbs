@@ -10,7 +10,12 @@ module.exports = {
   ],
   theme: {
      
-    extend: {},
+    extend: {      
+      backgroundImage: {       
+        "nature-light": "url('/images/ameen-fahmy-HSo-6tRqpTM-unsplash.jpg')",    
+        "nature-dark": "url('/nature-dark.jpg')",      
+      },
+    }
   },
   plugins: [],
 }

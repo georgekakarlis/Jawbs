@@ -3,7 +3,8 @@
 import Layout from "../components/Layout"
 import FeaturesFirst from "@/components/UI/Features/FeaturesFirst"
 import FeaturesSecond from "@/components/UI/Features/FeaturesSecond"
-import SearchJobForm from "@/components/UI/SearchJobForm"
+
+import LandingComponent from "@/components/UI/LandingComponent"
 
 
 
@@ -18,8 +19,8 @@ export default function Home() {
     <>
      
       <Layout>
-      <div className="max-w-lg mx-auto mt-8">
-<SearchJobForm />
+      <div className="mx-auto">
+<LandingComponent />
 </div>
       <FeaturesFirst />
       <FeaturesSecond />
