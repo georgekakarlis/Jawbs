@@ -21,7 +21,9 @@ const createJobPage = (props: Props) => {
   // If session exists, display content
   return (
     <Layout>
+      <div className='mx-auto my-auto flex flex-col min-h-screen'>
         <PostJobForm />
+      </div>
     </Layout>
   )
 }

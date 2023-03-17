@@ -24,6 +24,7 @@ type FormValues = {
   email: string;
   link: string;
   company: string;
+  companyImage: string
 };
 
 
@@ -59,46 +60,107 @@ export default function JobForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="job-name">Title</label>
-      <input type="text"  {...register("title" as const, { required: "Job Title is required", minLength: 3 })} />
-      {errors.title && <span>Title is required</span>}
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full sm:w-11/12 md:w-3/4 lg:w-4/5 xl:w-1/2 mx-auto p-6  bg-gray-900 rounded-sm shadow-md">
 
-      <label htmlFor="company-name">Description</label>
-      <input type="text" {...register("description" as const, { required: "Company name is required" })} />
-      {errors.description && <span>This field is required</span>}
 
-      <label htmlFor="email">Email</label>
-      <input type="email" {...register("email" as const, { required: "email is required", validate: validateEmail })} />
-      {errors.email && <span>This field is required</span>}
+  <div className="mb-3">
+    <label htmlFor="job-name" className="block mb-2 font-bold text-gray-400">Title</label>
+    <input
+    placeholder='Company Title'
+      type="text"
+      {...register("title" as const, { required: "Job Title is required", minLength: 3 })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
+  </div>
 
-      <label htmlFor="link">Link</label>
-      <input type="text" {...register("link" as const, { required: "link is required" })} />
-      {errors.link && <span>This field is required</span>}
+  <div className="mb-3">
+    <label htmlFor="company-name" className="block mb-2 font-bold text-gray-400">Description</label>
+    <input
+    placeholder='Job Description'
+      type="text"
+      {...register("description" as const, { required: "Description is required" })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.description && <span className="text-red-500 text-sm">{errors.description.message}</span>}
+  </div>
 
-      <label htmlFor="salary">Salary</label>
-      <input type="number" {...register("salary" as const, { required: "Salary is required" })} />
-      {errors.salary && <span>Salary is required</span>}
+  <div className="mb-3">
+    <label htmlFor="email" className="block mb-2 font-bold text-gray-400">Email</label>
+    <input
+    placeholder='email@johndoe.com'
+      type="email"
+      {...register("email" as const, { required: "Email is required", validate: validateEmail })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
+  </div>
 
-      <div>
-        <label htmlFor="category">Category:</label>
-        <select name="category" id="category" ref={categoryRef}>
-          {Object.values(JobCategory).map(category => (
-            <option key={category} value={category}>{category}</option>
-          ))}
-        </select>
-      </div>
-       
-    <label htmlFor="company">Company</label>
-      <input type="text" {...register("company" as const, { required: "company is required" })} />
-      {errors.company && <span>Company is required</span>}
+  <div className="mb-3">
+    <label htmlFor="link" className="block mb-2 font-bold text-gray-400">Link</label>
+    <input
+    placeholder='Link for your job'
+      type="text"
+      {...register("link" as const, { required: "Link is required" })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.link && <span className="text-red-500 text-sm">{errors.link.message}</span>}
+  </div>
 
-      <label htmlFor="location">Location</label>
-      <input type="text" {...register("location" as const, { required: "location is required" })} />
+  <div className="mb-3">
+    <label htmlFor="salary" className="block mb-2 font-bold text-gray-400">Salary</label>
+    <input
+    placeholder='eg. 50.000'
+      type="number"
+      {...register("salary" as const, { required: "Salary is required" })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.salary && <span className="text-red-500 text-sm">{errors.salary.message}</span>}
+  </div>
+
+  <div className="mb-3">
+    <label htmlFor="category" className="block mb-2 font-bold text-gray-400">Category:</label>
+    <select 
+    placeholder='Category'
+    name="category" id="category" ref={categoryRef} className="w-full p-2 border border-gray-400 rounded-md">
+      {Object.values(JobCategory).map(category => (
+        <option key={category} value={category}>{category}</option>
+      ))}
+    </select>
+  </div>
+
+   <div className="mb-3">
+    <label htmlFor="company" className="block mb-2 font-bold text-gray-400">Company</label>
+    <input
+    placeholder='Full Name of Company'
+      type="text"
+      {...register("company" as const, { required: "Company is required" })}
+      className="w-full p-2 border border-gray-400 rounded-md"
+    />
+    {errors.company && <span className="text-red-500 text-sm">{errors.company.message}</span>}
+   </div>
+   <div className='mb-3'>
+      <label htmlFor="location" className="block mb-2 font-bold text-gray-400">Location</label>
+      <input
+      placeholder='Location'
+       type="text" {...register("location" as const, { required: "location is required" })} 
+      className="w-full p-2 border border-gray-400 rounded-md"
+      />
       {errors.location && <span>Location is required</span>}
-
-      
-      <button type="submit">Submit</button>
+    </div>
+    <div className='mb-3'>
+    <label htmlFor="company-image" className="block mb-2 font-bold text-gray-400">Company Logo</label>
+    <input type="file" id="company-image" 
+    {...register("companyImage" as const, /* { required: "Company Image is required" } */)}
+     className=" cursor-pointer mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+     />
+   {errors.companyImage && <span>Logo is required</span>}
+    </div>
+      <div className='mb-3 mx-auto flex'>
+      <button type="submit" className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full">
+      Submit
+     </button>
+      </div>
       <ToastContainer 
       position="top-right"
       autoClose={1000}

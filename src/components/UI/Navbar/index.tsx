@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="  sm:max-w-screen w-full mx-auto  flex  justify-between border-b-4  bg-gray-900  md:max-w-screen-xl ">
+      <nav className="  w-full mx-auto  flex  justify-between border-b-4  bg-gray-900  md:max-w-screen-xl sm:max-w-screen-sm ">
         <div className=" px-2 md:flex">
           <ul className="m-2 w-full mx-auto p-2 text-center justify-center flex md:flex sm:flex my-auto sm:my-auto md:my-auto sm:justify-center sm:text-center md:justify-center md:text-center">
             <li className="text-xl sm:my-auto md:my-auto my-auto">
