@@ -68,6 +68,7 @@ model Job {
   email        String?
   link         String?
   company      String
+  logoURL      String?
 }
 
 enum JobCategory {

@@ -49,9 +49,9 @@ export default function JobForm() {
       const result = response.data;
       console.log(result);
       toast.success('Job posted successfully!');
-        // redirect to dashboard after 2 seconds
+        // redirect to drafts after 2 seconds if  posted successfully
         setTimeout(async () => {
-         await router.push('/dashboard');
+         await router.push('/drafts');
         }, 2000);
     } catch (error) {
       console.error(error);
