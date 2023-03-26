@@ -16,6 +16,11 @@ interface Job {
 }
 
 export default function JobsList() {
+  //here i declare a state variable name which is used to initialize an empty array so that it can accept the data from the api endpoint
+  //The useEffect hook is used to perform a side effect when the component is mounted
+  // The fetchJobs function is declared inside the useEffect hook, which uses async/await syntax to fetch data from a server-side API endpoint "/api/getJobs". 
+  //The fetched data is then parsed using response.json() and assigned to the jobs state variable using setJobs(jobs). 
+  //The empty dependency array [] is passed as the second argument to the useEffect hook, indicating that the effect should only run once when the component is mounted.
   const [jobs, setJobs] = useState<Job[]>([]);
 
   useEffect(() => {

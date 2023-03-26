@@ -27,6 +27,17 @@ type FormValues = {
   companyImage: string
 };
 
+/* useRef hook is used to create a reference to the category select element in the form.
+useForm hook is used to handle form state and validation. The register, handleSubmit, and errors variables are destructured from the returned object of useForm<FormValues>().
+useRouter hook is used to get access to the Next.js router object.
+The onSubmit function is an asynchronous function that will be called when the form is submitted. It uses the axios library to send a POST request to a server-side API endpoint /api/postJob. The request body includes data from the form fields, as well as the selected category from the categoryRef reference.
+
+If the API request is successful, the function logs the response data to the console and displays a success toast message. Then, the function uses the router object to redirect to the /drafts page after a 2-second delay using setTimeout.
+
+If the API request fails, the function logs the error to the console and displays an error toast message.
+
+Overall, this code handles the submission of a form, sends data to a server-side API endpoint, and displays toast messages to the user based on the result of the API request. */
+
 
 export default function JobForm() {
   

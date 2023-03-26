@@ -6,6 +6,7 @@ import Link from "next/link";
 
 
 export default function Navbar() {
+  //usessesion hook to retrieve the session
   const { data: session, status } = useSession();
  
   

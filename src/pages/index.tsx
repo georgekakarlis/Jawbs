@@ -7,11 +7,6 @@ import FeaturesSecond from "@/components/UI/Features/FeaturesSecond"
 import LandingComponent from "@/components/UI/LandingComponent"
 
 
-
-
-
-
-
 export default function Home() {
 
  
