@@ -9,6 +9,8 @@ export interface Job {
     salary: String;
     email: String;
     link: String;
+    company: String;
+    logoURL: String;
   }
 
 export { JobCategory };
