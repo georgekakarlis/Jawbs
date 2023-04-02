@@ -13,3 +13,5 @@
  4. ⌛ make better hero component and slowly implement search functionality
 
  5. ⌛ just before search functionality -> Cache jobs!!
+
+ 6. ⌛ need to check dashboard page and drafts component. Also to implement api endpoint to handle the published jobs.

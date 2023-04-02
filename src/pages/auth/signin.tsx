@@ -14,7 +14,7 @@ function signin({ providers }: { providers: AppProps }) {
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
             {/* logo edw */}
-            <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+            <h2 className="mt-6 text-3xl font-extrabold text-white">Sign in to your account</h2>
 
           </div>
           <div className="my-4  mx-5">

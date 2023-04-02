@@ -102,11 +102,11 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray tracking-wider uppercase">Solutions</h3>
+                <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Solutions</h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-base text-gray hover:text-white">
+                      <Link href={item.href} className=" text-gray-400 hover:text-white">
                         {item.name}
                       </Link>
                     </li>
@@ -114,11 +114,11 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray tracking-wider uppercase">Support</h3>
+                <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Support</h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-base text-gray hover:text-white">
+                      <Link href={item.href} className="text-base text-gray-400 hover:text-white">
                         {item.name}
                       </Link>
                     </li>
@@ -128,11 +128,11 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray tracking-wider uppercase">Company</h3>
+                <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-base text-gray hover:text-white">
+                      <Link href={item.href} className="text-base text-gray-400 hover:text-white">
                         {item.name}
                       </Link>
                     </li>
@@ -140,11 +140,11 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray tracking-wider uppercase">Legal</h3>
+                <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Legal</h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-base text-gray hover:text-white">
+                      <Link href={item.href} className="text-base text-gray-400 hover:text-white">
                         {item.name}
                       </Link>
                     </li>
@@ -154,10 +154,10 @@ export default function Footer() {
             </div>
           </div>
           <div className="mt-8 xl:mt-0">
-            <h3 className="text-sm font-semibold text-gray tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
               Subscribe to our newsletter
             </h3>
-            <p className="mt-4 text-base text-gray">
+            <p className="mt-4 text-base text-gray-300">
               The latest news, articles, and resources, sent to your inbox weekly.
             </p>
             <form className="mt-4 sm:flex sm:max-w-md">
@@ -187,14 +187,14 @@ export default function Footer() {
         <div className="mt-8 border-t border-gray pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
-              <Link key={item.name} href={item.href} className="text-gray hover:text-white">
+              <Link key={item.name} href={item.href} className="text-gray-300 hover:text-white">
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
               </Link>
             ))}
           </div>
-          <p className="mt-8 text-base text-gray hover:text-white md:mt-0 md:order-1">
-            <Link href="http://localhost:3000">&copy; 2023 nuzi Inc. All rights reserved.</Link>
+          <p className="mt-8 text-base text-gray-300 hover:text-white md:mt-0 md:order-1">
+            <Link href="/">&copy; 2023 nuzi Inc. All rights reserved.</Link>
           </p>
         </div>
       </div>
