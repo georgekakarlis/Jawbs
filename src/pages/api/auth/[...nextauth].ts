@@ -11,7 +11,14 @@ import prisma from '../../../lib/prisma'
 
 export const authOptions: NextAuthOptions = {
  
-  callbacks: {},
+  callbacks: {session({ session, user }) {
+    if (session.user) {
+      if (typeof user.id !== "string") throw new Error("id should a number");
+      session.user.id = user.id // OK
+      // session.user.id = +user.id // more dangerous but still works
+      // session.user.id = user.id as number // also dangerous
+    }
+    return session },},
   adapter: PrismaAdapter(prisma),
   providers: [
     DiscordProvider({

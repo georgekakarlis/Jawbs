@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { JobCategory, Prisma, PrismaClient } from '@prisma/client';
+import { JobCategory, Prisma, PrismaClient, Session } from '@prisma/client';
 import { getServerSession, User } from 'next-auth';
 import { authOptions } from './auth/[...nextauth]';
 
@@ -50,6 +50,7 @@ export interface Job {
   salary: string;
   email: string;
   link: string;
+  postedBy: Session
 }
 
 const prisma = new PrismaClient();
@@ -83,7 +84,7 @@ export default async function postJob(
       email,
       link,
       company,
-      
+      postedBy
     }: Prisma.JobCreateInput = req.body;
 
 
@@ -97,7 +98,7 @@ export default async function postJob(
         email,
         link,
         company,
-        
+        postedBy
       }
     });
 

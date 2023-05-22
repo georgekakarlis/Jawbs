@@ -2,11 +2,9 @@ import Link from 'next/link'
 import React from 'react'
 
 
-
 const Custom404 = () => {
     return (
         <>
-         
           <main
             className="min-h-screen bg-cover bg-no-repeat bg-fixed bg-center"
             style={{

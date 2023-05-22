@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { JobCategory } from '@prisma/client';
+import { JobCategory, Session } from '@prisma/client';
 import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
 
@@ -12,6 +12,15 @@ import { useSession } from 'next-auth/react';
 const validateEmail = (value: string) => {
   const emailRegex = /^\S+@\S+\.\S+$/;
   return emailRegex.test(value) || "Invalid email address";
+};
+
+const validateSalary = (value: string) => {
+  const salaryRegex = /^\d{1,6}(\.\d{1,5})?$/; // Matches 1-6 digits before a decimal point, followed by 0-2 digits after a decimal point
+  return (
+    salaryRegex.test(value) &&
+    parseFloat(value) >= 0 && // Ensure salary is positive
+    parseFloat(value) <= 1000000 // Ensure salary is less than or equal to 1 million
+  ) || "Invalid salary amount";
 };
 
 type FormValues = {
@@ -25,6 +34,7 @@ type FormValues = {
   link: string;
   company: string;
   companyImage: string
+  postedBy: Session
 };
 
 /* useRef hook is used to create a reference to the category select element in the form.
@@ -45,24 +55,28 @@ export default function JobForm() {
   const categoryRef = useRef<HTMLSelectElement>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const router = useRouter();
-  
+  const { data: session } = useSession();
 
   const onSubmit = async (data: FormValues) => {
     try {
       const response = await axios.post('http://localhost:3000/api/postJob', {
         ...data,
         salary: toString(),
+        session,
         category: categoryRef.current?.value as JobCategory, // get selected value from ref
         
     }, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+        Authorization: `Bearer ${session?.user}`, 
+        credentials: 'include'}
+        ,
       });
       const result = response.data;
-      console.log(result);
+      console.log(result); ///delete before production
       toast.success('Job posted successfully!');
         // redirect to drafts after 2 seconds if  posted successfully
         setTimeout(async () => {
-         await router.push('/drafts');
+         await router.push('/dashboard');
         }, 2000);
     } catch (error) {
       console.error(error);
@@ -123,7 +137,7 @@ export default function JobForm() {
     <input
     placeholder='eg. 50.000'
       type="number"
-      {...register("salary" as const, { required: "Salary is required" })}
+      {...register("salary" as const, { required: "Salary is required", validate: validateSalary })}
       className="w-full p-2 border border-gray-400 rounded-md"
     />
     {errors.salary && <span className="text-red-500 text-sm">{errors.salary.message}</span>}
@@ -184,6 +198,7 @@ export default function JobForm() {
       pauseOnHover
       theme="light"
 />
+<input type="hidden" name="userSession" value={JSON.stringify(session?.user)} />
     </form>
   );
 }
