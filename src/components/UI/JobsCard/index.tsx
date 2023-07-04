@@ -14,8 +14,13 @@ interface Job {
   link: string;
   company: string;
 }
+interface JobsListProps {
+  title: string;
+  description: string;
+  job: Job;
+}
 
-export default function JobsList() {
+const JobsList: React.FC<JobsListProps> = ({ title, description, job }) => {
   //here i declare a state variable name which is used to initialize an empty array so that it can accept the data from the api endpoint
   //The useEffect hook is used to perform a side effect when the component is mounted
   // The fetchJobs function is declared inside the useEffect hook, which uses async/await syntax to fetch data from a server-side API endpoint "/api/getJobs". 
@@ -72,3 +77,5 @@ export default function JobsList() {
     </div>
   );
 }
+
+export default JobsList

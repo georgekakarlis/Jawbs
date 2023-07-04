@@ -4,23 +4,29 @@ import Link from "next/link";
 import AccessDenied from "../components/access-denied";
 import Layout from "../components/Layout";
 import JobsList from "@/components/UI/JobsCard";
+import { useState, useEffect } from "react";
+import { JobCategory } from "@/types/job";
 
-export default function Dashboard() {
-  //jobs must come with an HTTP call to api endpoint --TODO
-  const draftJobs = [
-    {
-      id: 1,
-      title: "Job Title 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 2,
-      title: "Job Title 2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
+
+interface Job {
+  id: string;
+  title: string;
+  description: string;
+  category: JobCategory;
+  location: string;
+  salary: number;
+  email: string;
+  link: string;
+  company: string;
+}
+interface JobsListProps {
+  title: string;
+  description: string;
+  job: Job;
+}
+
+const Dashboard: React.FC<JobsListProps> = ({title,description, job }) => {
+ 
 
   const { data: session } = useSession();
 
@@ -61,13 +67,14 @@ export default function Dashboard() {
             My posted Jobs
           </h5>
           <div className="grid justify-center my-auto mx-auto w-1/8 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {draftJobs.map((job) => (
-              <JobsList
-                key={job.id}
-                title={job.title}
-                description={job.description}
-              />
-            ))}
+         
+          <JobsList
+            key={job.id}
+            title={job.title}
+            description={job.description}
+            job={job}
+          />
+            
           </div>
         </div>
 
@@ -91,3 +98,5 @@ export default function Dashboard() {
     </Layout>
   );
 }
+
+export default Dashboard
