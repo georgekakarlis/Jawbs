@@ -72,7 +72,7 @@ export default async function postJob(
     
   }
 
- 
+ // no session.id to who did that, to who posted the job :/ 
 
   try {
     const {
